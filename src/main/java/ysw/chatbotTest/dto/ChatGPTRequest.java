@@ -9,15 +9,13 @@ import java.util.List;
 public class ChatGPTRequest {
     private String model;
     private List<Message> messages;
-    private double temperature;
-    private int max_tokens;
+    private double temperature; // default : 0.7
+    private int max_tokens; // default : 256
 
     public ChatGPTRequest(String model, String prompt) {
         this.model = model;
         this.messages = new ArrayList<>();
         this.messages.add(new Message("user", prompt));
-        this.temperature = 0.5;
-        this.max_tokens = 256;
     }
 
     public ChatGPTRequest(String model, String prompt, double temperature, int max_tokens) {
@@ -26,5 +24,11 @@ public class ChatGPTRequest {
         this.messages.add(new Message("user", prompt));
         this.temperature = temperature;
         this.max_tokens = max_tokens;
+    }
+
+    public ChatGPTRequest(String model, List<Message> messages) {
+        this.model = model;
+        this.messages = messages;
+        this.max_tokens = 2048;
     }
 }
